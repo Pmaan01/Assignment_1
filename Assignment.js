@@ -84,7 +84,7 @@ console.log(getHighestAverageStudent(studentList))
 
 function findHighestOccurrence(arr) {
     const countObj = arr.reduce((acc, num) => {
-        acc[num] = (acc[num] || 0) + 1;
+        acc[num] = acc[num] === undefined ? 0 : acc[num] + 1
         return acc
     }, {})
 
@@ -128,14 +128,19 @@ console.log(findUniqueNumber([20, 20, 11, 4, 11, 20, 2, 4]))
 
 // ['aba', 'ccc', 'a']
 
-function isPalindrome(str) {
-    return str === str.split('').reverse().join('')
-}
+function getPalindromes(arr) {
 
-function filterPalindromes(arr) {
-    return arr.filter(isPalindrome)
-}
+    const palindroms = []    
+    arr.forEach(word => {
+        const reversedWord  = word.split("").reverse().join("")
 
-const arr = ['abc', 'aba', 'ccc', 'dca', 'a']
-const palindromes = filterPalindromes(arr)
-console.log(palindromes)
+        if(word === reversedWord ){
+            palindroms.push(word) 
+        }
+        
+    })
+    return palindroms
+}
+console.log(getPalindromes(['abc', 'aba', 'ccc', 'dca', 'a']));
+
+
